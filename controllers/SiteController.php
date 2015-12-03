@@ -10,6 +10,7 @@ use app\models\LoginForm;
 use app\models\ContactForm;
 use app\models\MyForm;
 use yii\helpers\Html;
+use yii\web\UploadedFile;
 
 
 class SiteController extends Controller
@@ -101,6 +102,8 @@ class SiteController extends Controller
         if($form->load(Yii::$app->request->post()) && $form->validate()){
             $name = Html::encode($form->name);
             $email = Html::encode($form->email);
+            $form ->file = UploadedFile::getInstance($form, 'file');
+            $form ->file->saveAs('images/'.$form->file->baseName.".".$form->file->extension);
         }else{
             $name = '';
             $email = '';
