@@ -9,6 +9,7 @@ use yii\filters\VerbFilter;
 use app\models\LoginForm;
 use app\models\ContactForm;
 use app\models\MyForm;
+use app\models\Users;
 use yii\helpers\Html;
 use yii\web\UploadedFile;
 
@@ -115,6 +116,19 @@ class SiteController extends Controller
              'email' => $email
         ]
 
+
+        );
+    }
+
+
+    public function actionUsers()
+    {
+
+        $users = Users::find()->all();
+        return $this->render('users',
+           [
+               'users' => $users
+           ]
 
         );
     }
